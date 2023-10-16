@@ -2,9 +2,12 @@ package com.zy.snakesladders;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +42,29 @@ public class Zy_SnL_MainActivity extends AppCompatActivity {
         UpdateBoxes();
     }
 
+    void Animate() {
+        ObjectAnimator translationAnimator = ObjectAnimator.ofFloat(
+                Dice,
+                View.TRANSLATION_X,
+                -800f,
+                0f
+        );
+
+        ObjectAnimator rotationAnimator = ObjectAnimator.ofFloat(
+                Dice,
+                View.ROTATION,
+                0f,
+                360f
+        );
+
+        translationAnimator.setDuration(1000);
+        rotationAnimator.setDuration(1000);
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(translationAnimator, rotationAnimator);
+        animatorSet.start();
+    }
+
     void Play() {
         DiceValue = (int) (Math.random() * 6) + 1;
         Log.i("Dice", "Rolled: " + DiceValue);
@@ -58,6 +84,8 @@ public class Zy_SnL_MainActivity extends AppCompatActivity {
         }
 
         UpdateBoxes();
+
+        Animate();
     }
 
     void UpdateBoxes() {
