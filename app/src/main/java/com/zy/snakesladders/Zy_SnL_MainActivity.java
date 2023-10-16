@@ -36,7 +36,7 @@ public class Zy_SnL_MainActivity extends AppCompatActivity {
     }
 
     void Reset() {
-        DiceValue = 0;
+        DiceValue = 1;
         CurrentPos = 0;
         UpdateDice();
         UpdateBoxes();
